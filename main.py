@@ -27,3 +27,8 @@ print("\n========== RESULTS ==========")
 print(f"Match Score : {score}%")
 print(f"Feedback    : {feedback}")
 print("==============================")
+
+from utils.skills import extract_skills
+
+test_text = "I have experience with Python, PyTorch and machine learning"
+print(extract_skills(test_text))

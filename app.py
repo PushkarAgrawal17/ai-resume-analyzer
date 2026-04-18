@@ -1,4 +1,5 @@
 import streamlit as st
+from utils.skills import compare_skills
 from utils.extractor import extract_text_from_pdf
 from utils.embedder import get_embedding
 from utils.scorer import compute_match_score, generate_feedback
@@ -32,6 +33,7 @@ if analyze_btn:
             jd_embedding = get_embedding(job_description)
             score = compute_match_score(resume_embedding, jd_embedding)
             feedback = generate_feedback(score)
+            matched_skills, missing_skills = compare_skills(resume_text, job_description)
 
         os.unlink(tmp_path)  # clean up temp file
 
@@ -40,3 +42,31 @@ if analyze_btn:
         st.subheader("Results")
         st.metric(label="Match Score", value=f"{score}%")
         st.info(feedback)
+
+        st.markdown("---")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("✅ Matched Skills")
+            if matched_skills:
+                for skill in sorted(matched_skills):
+                    st.success(skill)
+            else:
+                st.write("No matching skills found.")
+
+        with col2:
+            st.subheader("❌ Missing Skills")
+            if missing_skills:
+                for skill in sorted(missing_skills):
+                    st.error(skill)
+            else:
+                st.write("No missing skills — great match!")
+
+        if missing_skills:
+            st.markdown("---")
+            st.subheader("💡 Suggestion")
+            st.warning(
+                f"Consider adding these skills to your resume: "
+                f"{', '.join(sorted(missing_skills))}."
+            )
