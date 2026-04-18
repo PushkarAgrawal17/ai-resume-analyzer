@@ -1,6 +1,7 @@
 from utils.extractor import extract_text_from_pdf
 from utils.embedder import get_embedding
 from utils.scorer import compute_match_score, generate_feedback
+from utils.skills import extract_skills
 
 # --- INPUTS ---
 resume_path = "data/DS Lab - PBL Report.pdf"   # your actual PDF name
@@ -30,5 +31,5 @@ print("==============================")
 
 from utils.skills import extract_skills
 
-test_text = "I have experience with Python, PyTorch and machine learning"
+test_text = "I have experience with MySQL, sklearn and nodejs"
 print(extract_skills(test_text))

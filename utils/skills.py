@@ -25,22 +25,38 @@ SKILLS_DB = {
     ]
 }
 
+SKILL_ALIASES = {
+    "sql":          ["mysql", "postgresql", "sqlite"],
+    "javascript":   ["js", "node.js", "nodejs"],
+    "scikit-learn": ["sklearn"],
+    "tensorflow":   ["tf"],
+    "c++":          ["cpp"],
+    "nlp":          ["natural language processing"],
+    "computer vision": ["cv", "opencv"],
+    "aws":          ["amazon web services"],
+    "gcp":          ["google cloud"],
+}
+
+
 import re
 
 def extract_skills(text):
-    """
-    Takes any text (resume or JD).
-    Returns a set of matched skills from SKILLS_DB.
-    """
     text_lower = text.lower()
     found_skills = set()
 
+    # Step 1: direct matching (same as before)
     for category, skill_list in SKILLS_DB.items():
         for skill in skill_list:
-            # Use word boundary matching for short/ambiguous skills
             pattern = r'\b' + re.escape(skill) + r'\b'
             if re.search(pattern, text_lower):
                 found_skills.add(skill)
+
+    # Step 2: alias matching
+    for canonical_skill, aliases in SKILL_ALIASES.items():
+        for alias in aliases:
+            pattern = r'\b' + re.escape(alias) + r'\b'
+            if re.search(pattern, text_lower):
+                found_skills.add(canonical_skill)  # credit the canonical skill
 
     return found_skills
 
