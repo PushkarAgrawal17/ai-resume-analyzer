@@ -27,3 +27,23 @@ def generate_feedback(score):
         return "Moderate Match ⚠️ — Consider tailoring your resume more."
     else:
         return "Weak Match ❌ — Significant gaps between resume and job description."
+
+
+def compute_section_scores(sections, jd_embedding):
+    """
+    Takes extracted resume sections and JD embedding.
+    Returns a dict of section_name -> score percentage.
+    """
+    from utils.embedder import get_embedding
+
+    section_scores = {}
+
+    for section_name, section_text in sections.items():
+        if section_text.strip():  # skip empty sections
+            section_embedding = get_embedding(section_text)
+            score = compute_match_score(section_embedding, jd_embedding)
+            section_scores[section_name] = score
+        else:
+            section_scores[section_name] = 0.0
+
+    return section_scores

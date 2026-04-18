@@ -1,8 +1,8 @@
 import streamlit as st
 from utils.skills import compare_skills
-from utils.extractor import extract_text_from_pdf
 from utils.embedder import get_embedding
-from utils.scorer import compute_match_score, generate_feedback
+from utils.extractor import extract_text_from_pdf, extract_sections
+from utils.scorer import compute_match_score, generate_feedback, compute_section_scores
 import tempfile
 import os
 
@@ -29,11 +29,13 @@ if analyze_btn:
 
         with st.spinner("Analyzing your resume..."):
             resume_text = extract_text_from_pdf(tmp_path)
+            sections = extract_sections(resume_text)
             resume_embedding = get_embedding(resume_text)
             jd_embedding = get_embedding(job_description)
             score = compute_match_score(resume_embedding, jd_embedding)
             feedback = generate_feedback(score)
             matched_skills, missing_skills = compare_skills(resume_text, job_description)
+            section_scores = compute_section_scores(sections, jd_embedding)
 
         os.unlink(tmp_path)  # clean up temp file
 
@@ -41,6 +43,14 @@ if analyze_btn:
         st.markdown("---")
         st.subheader("Results")
         st.metric(label="Match Score", value=f"{score}%")
+
+        st.markdown("---")
+        st.subheader("📊 Score Breakdown by Section")
+
+        cols = st.columns(len(section_scores))
+        for col, (section, score) in zip(cols, section_scores.items()):
+            col.metric(label=section.capitalize(), value=f"{score}%")
+
         st.info(feedback)
 
         st.markdown("---")

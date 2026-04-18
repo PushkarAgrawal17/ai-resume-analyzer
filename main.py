@@ -1,4 +1,4 @@
-from utils.extractor import extract_text_from_pdf
+from utils.extractor import extract_text_from_pdf, extract_sections
 from utils.embedder import get_embedding
 from utils.scorer import compute_match_score, generate_feedback
 from utils.skills import extract_skills
@@ -33,3 +33,10 @@ from utils.skills import extract_skills
 
 test_text = "I have experience with MySQL, sklearn and nodejs"
 print(extract_skills(test_text))
+
+text = extract_text_from_pdf("data/Pushkar Agrawal - Resume.pdf")
+sections = extract_sections(text)
+
+for section, content in sections.items():
+    print(f"\n=== {section.upper()} ===")
+    print(content[:200])  # first 200 chars of each section
