@@ -1,42 +1,30 @@
-from utils.extractor import extract_text_from_pdf, extract_sections
+from utils.extractor import extract_text_from_pdf
 from utils.embedder import get_embedding
 from utils.scorer import compute_match_score, generate_feedback
-from utils.skills import extract_skills
 
-# --- INPUTS ---
-resume_path = "data/DS Lab - PBL Report.pdf"   # your actual PDF name
-job_description = """
-We are looking for a software developer with experience in
-Python, AIML, data structures, algorithms, leetcode, Matplotlib, Scikit-learn, Tensorflow, Pytorch, MySQL, pandasm, HTML, CSS, javascript and problem solving.
-Familiarity with hackathons, project development and teamwork is a plus.
-"""
+# This file is for quick CLI testing only.
+# The main app runs via: streamlit run app.py
 
-# --- PIPELINE ---
-print("Extracting resume text...")
-resume_text = extract_text_from_pdf(resume_path)
+if __name__ == "__main__":
+    resume_path = "data/Pushkar Agrawal - Resume.pdf"
+    job_description = """
+    We are looking for a Junior AI/ML Engineer with hands-on experience
+    in Python and machine learning, scikit-learn, tensorflow, pytorch.
+    Familiarity with docker, aws and nlp is a plus.
+    """
 
-print("Generating embeddings...")
-resume_embedding = get_embedding(resume_text)
-jd_embedding = get_embedding(job_description)
+    print("Extracting resume text...")
+    resume_text = extract_text_from_pdf(resume_path)
 
-print("Computing match score...")
-score = compute_match_score(resume_embedding, jd_embedding)
-feedback = generate_feedback(score)
+    print("Generating embeddings...")
+    resume_embedding = get_embedding(resume_text)
+    jd_embedding = get_embedding(job_description)
 
-# --- OUTPUT ---
-print("\n========== RESULTS ==========")
-print(f"Match Score : {score}%")
-print(f"Feedback    : {feedback}")
-print("==============================")
+    print("Computing match score...")
+    score = compute_match_score(resume_embedding, jd_embedding)
+    feedback = generate_feedback(score)
 
-from utils.skills import extract_skills
-
-test_text = "I have experience with MySQL, sklearn and nodejs"
-print(extract_skills(test_text))
-
-text = extract_text_from_pdf("data/Pushkar Agrawal - Resume.pdf")
-sections = extract_sections(text)
-
-for section, content in sections.items():
-    print(f"\n=== {section.upper()} ===")
-    print(content[:200])  # first 200 chars of each section
+    print("\n========== RESULTS ==========")
+    print(f"Match Score : {score}%")
+    print(f"Feedback    : {feedback}")
+    print("==============================")

@@ -1,3 +1,5 @@
+import re
+
 SKILLS_DB = {
     "languages": [
         "python", "c++", "java", "javascript", "typescript",
@@ -37,8 +39,6 @@ SKILL_ALIASES = {
     "gcp":          ["google cloud"],
 }
 
-
-import re
 
 def extract_skills(text):
     text_lower = text.lower()
