@@ -2,6 +2,7 @@ from utils.extractor import extract_text_from_pdf
 from utils.embedder import get_embedding, model
 from utils.scorer import compute_match_score, generate_feedback
 from utils.explainer import split_into_sentences, get_top_matches
+from utils.skills import extract_skills_fuzzy
 
 # This file is for quick CLI testing only.
 # The main app runs via: streamlit run app.py
@@ -55,3 +56,17 @@ for i, (r, j, score) in enumerate(matches):
     print(f"\nMatch {i+1} — Score: {score}%")
     print(f"  Resume : {r[:100]}")
     print(f"  JD     : {j[:100]}")
+
+
+test_text = "I have experience with machine-learning, pytorch and sklearn"
+print(extract_skills_fuzzy(test_text))
+
+test_text = "I have experience with java and javascript"
+print(extract_skills_fuzzy(test_text))
+
+
+test1 = "I have experience with java and javascript"
+test2 = "I have experience with javascript only"
+
+print("Test 1:", extract_skills_fuzzy(test1))
+print("Test 2:", extract_skills_fuzzy(test2))
