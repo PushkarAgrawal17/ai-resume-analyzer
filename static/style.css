@@ -14,40 +14,71 @@ body {
 }
 
 /* HERO */
+/* HERO */
 .hero {
     text-align: center;
-    padding: 3.5rem 1rem 2rem;
+    padding: 4rem 1rem 2.5rem;
 }
 
 .hero-badge {
     display: inline-block;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(99, 102, 241, 0.4);
-    color: #a78bfa;
-    font-size: 0.78rem;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    color: #818cf8;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    padding: 0.35rem 1rem;
+    padding: 0.35rem 1.1rem;
     border-radius: 999px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 900;
     background: linear-gradient(135deg, #e0e7ff 0%, #a78bfa 50%, #818cf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
 }
 
 .hero-subtitle {
+    font-size: 0.95rem;
+    color: #5c6c83;
+    max-width: 480px;
+    margin: 0 auto 1.75rem auto;
+    line-height: 1.65;
+}
+
+.hero-features {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.hero-feature {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #6f829b;
+    letter-spacing: 0.03em;
+}
+
+.hero-divider {
+    color: #28354b;
     font-size: 1rem;
-    color: #64748b;
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.6;
 }
 
 /* CONTAINER */
@@ -95,6 +126,14 @@ body {
 
 .upload-box:hover {
     border-color: rgba(139, 92, 246, 0.6);
+}
+
+.file-confirmed {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    color: #4ade80;
+    font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
 .upload-box input[type="file"] {

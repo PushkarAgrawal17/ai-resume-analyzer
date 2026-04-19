@@ -67,6 +67,7 @@ def analyze():
         missing_skills=sorted(missing_skills),
         suggestions=suggestions,
         top_matches=top_matches,
+        filename=resume_file.filename,
     )
 
 

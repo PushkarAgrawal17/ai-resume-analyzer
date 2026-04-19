@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Resume Analyzer</title>
+    <title>Resumate - AI Resume Analyzer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
@@ -11,12 +11,20 @@
 
     <!-- HERO -->
     <div class="hero">
-        <div class="hero-badge">✦ Semantic AI Matching</div>
-        <h1 class="hero-title">AI Resume Analyzer</h1>
+        <div class="hero-badge">✦ Resume Intelligence Platform</div>
+        <h1 class="hero-title">Resumate</h1>
+        <p class="hero-tagline">AI Resume Analyzer with Semantic Matching & Skill Gap Insights</p>
         <p class="hero-subtitle">
-            Upload your resume and paste a job description — get an instant match score,
-            skill gap analysis, and actionable suggestions.
+            Understand your job fit with AI-powered semantic analysis,
+            skill gap detection, and actionable feedback.
         </p>
+        <div class="hero-features">
+            <span class="hero-feature">⚡ Semantic Matching</span>
+            <span class="hero-divider">•</span>
+            <span class="hero-feature">🎯 Skill Gap Detection</span>
+            <span class="hero-divider">•</span>
+            <span class="hero-feature">🧠 Explainable Insights</span>
+        </div>
     </div>
 
     <!-- INPUT FORM -->
@@ -31,6 +39,11 @@
                             <span id="file-name">Click to upload PDF</span>
                         </label>
                     </div>
+                    {% if filename %}
+                    <div class="file-confirmed">
+                        Analyzed: {{ filename }}
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="input-group">
                     <label class="input-label">📋 JOB DESCRIPTION</label>
