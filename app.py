@@ -2,7 +2,7 @@ import streamlit as st
 from utils.skills import compare_skills
 from utils.embedder import get_embedding, model
 from utils.extractor import extract_text_from_pdf, extract_sections
-from utils.scorer import compute_match_score, generate_feedback, compute_section_scores
+from utils.scorer import compute_match_score, generate_feedback, compute_section_scores, compute_weighted_score
 from utils.explainer import get_top_matches
 import tempfile
 import os
@@ -304,6 +304,7 @@ if analyze_btn:
             feedback = generate_feedback(score)
             matched_skills, missing_skills = compare_skills(resume_text, job_description)
             section_scores = compute_section_scores(sections, jd_embedding)
+            weighted_score = compute_weighted_score(section_scores)
             top_matches = get_top_matches(resume_text, job_description, model, top_n=5)
 
         os.unlink(tmp_path)
@@ -312,7 +313,7 @@ if analyze_btn:
         st.markdown("---")
         st.markdown(f"""
         <div class="score-card">
-            <div class="score-number">{score}%</div>
+            <div class="score-number">{weighted_score}%</div>
             <div class="score-label">Overall Match Score</div>
         </div>
         """, unsafe_allow_html=True)
