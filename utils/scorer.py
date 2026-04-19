@@ -17,17 +17,13 @@ def compute_match_score(resume_embedding, jd_embedding):
 
 
 def generate_feedback(score):
-    """
-    Takes a match score (float).
-    Returns a simple human-readable feedback string.
-    """
-    if score >= 75:
+    if score >= 65:
         return "Strong Match ✅ — Your resume aligns well with this job."
-    elif score >= 50:
+    elif score >= 45:
         return "Moderate Match ⚠️ — Consider tailoring your resume more."
     else:
         return "Weak Match ❌ — Significant gaps between resume and job description."
-
+    
 
 def compute_section_scores(sections, jd_embedding):
     """
@@ -49,16 +45,12 @@ def compute_section_scores(sections, jd_embedding):
     return section_scores
 
 
-def compute_weighted_score(section_scores):
-    """
-    Takes section scores dict.
-    Returns a single weighted score as a percentage.
-    """
+def compute_weighted_score(section_scores, matched_skills=None, jd_skills=None):
     weights = {
-        "skills":    0.40,
-        "projects":  0.35,
+        "skills":    0.50,
+        "projects":  0.30,
         "education": 0.15,
-        "general":   0.10,
+        "general":   0.05,
     }
 
     weighted_total = 0.0
@@ -69,9 +61,17 @@ def compute_weighted_score(section_scores):
             weighted_total += section_scores[section] * weight
             weight_used += weight
 
-    # Normalize in case some sections are missing
     if weight_used == 0:
         return 0.0
 
-    final_score = weighted_total / weight_used
+    embedding_score = weighted_total / weight_used
+
+    # Blend with skill match ratio if skills provided
+    if matched_skills is not None and jd_skills is not None and len(jd_skills) > 0:
+        skill_match_ratio = len(matched_skills) / len(jd_skills) * 100
+        # 70% embedding score + 30% skill match ratio
+        final_score = (embedding_score * 0.70) + (skill_match_ratio * 0.30)
+    else:
+        final_score = embedding_score
+
     return round(final_score, 2)

@@ -117,4 +117,4 @@ def compare_skills(resume_text, jd_text):
     matched = resume_skills & jd_skills   # intersection
     missing = jd_skills - resume_skills   # in JD but not in resume
 
-    return matched, missing
+    return matched, missing, jd_skills  

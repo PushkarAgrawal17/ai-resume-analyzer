@@ -302,9 +302,9 @@ if analyze_btn:
             jd_embedding = get_embedding(job_description)
             score = compute_match_score(resume_embedding, jd_embedding)
             feedback = generate_feedback(score)
-            matched_skills, missing_skills = compare_skills(resume_text, job_description)
+            matched_skills, missing_skills, jd_skills = compare_skills(resume_text, job_description)
             section_scores = compute_section_scores(sections, jd_embedding)
-            weighted_score = compute_weighted_score(section_scores)
+            weighted_score = compute_weighted_score(section_scores, matched_skills, jd_skills)
             top_matches = get_top_matches(resume_text, job_description, model, top_n=5)
 
         os.unlink(tmp_path)
