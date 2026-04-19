@@ -1,6 +1,6 @@
-# AI Resume Analyzer
+# Resumate — Intelligent Resume Analyzer
 
-A semantic AI-powered web application that analyzes how well your resume matches a job description.
+A semantic NLP web application that analyzes how well your resume matches a job description.
 Upload a PDF resume, paste a job description, and get an instant match score, skill gap analysis,
 section-wise breakdown, and actionable suggestions — powered by sentence embeddings and cosine similarity.
 
