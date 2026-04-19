@@ -1,4 +1,3 @@
-import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
 def split_into_sentences(text, min_length=20):

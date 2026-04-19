@@ -107,14 +107,12 @@ def extract_skills_fuzzy(text, threshold=80):
 def compare_skills(resume_text, jd_text):
     """
     Compares skills between resume and job description.
-    Returns matched skills, missing skills.
+    Returns matched skills, missing skills, and all JD skills.
     """
-
     resume_skills = extract_skills_fuzzy(resume_text)
     jd_skills = extract_skills_fuzzy(jd_text)
 
+    matched = resume_skills & jd_skills
+    missing = jd_skills - resume_skills
 
-    matched = resume_skills & jd_skills   # intersection
-    missing = jd_skills - resume_skills   # in JD but not in resume
-
-    return matched, missing, jd_skills  
+    return matched, missing, jd_skills

@@ -137,6 +137,10 @@ textarea::placeholder {
     color: #475569;
 }
 
+textarea::-webkit-scrollbar {
+    display: none;
+}
+
 /* Button */
 .analyze-btn {
     width: 100%;
