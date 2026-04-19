@@ -1,4 +1,4 @@
-# Resumate — Intelligent Resume Analyzer
+# Resumate - Intelligent Resume Analyzer
 
 A semantic NLP web application that analyzes how well your resume matches a job description.
 Upload a PDF resume, paste a job description, and get an instant match score, skill gap analysis,
@@ -12,7 +12,7 @@ section-wise breakdown, and actionable suggestions — powered by sentence embed
 Compares resume and job description using sentence embeddings and cosine similarity — not keyword counting.
 Understands meaning, not just word overlap.
 
-**Explainability — Why This Score**
+**Explainability - Why This Score**
 Shows the top 5 matching sentence pairs between your resume and the JD, so you know exactly why
 you got the score you did.
 
@@ -146,8 +146,9 @@ Open `http://127.0.0.1:5000` in your browser.
 ---
 
 ## Screenshots
-
-> Coming soon
+<img width="1920" height="1140" alt="Home Page" src="https://github.com/user-attachments/assets/30d003fa-e8af-47c7-a3f8-6b2aa2ab1e39" />
+<img width="1920" height="1140" alt="Features1" src="https://github.com/user-attachments/assets/5276f5ab-f2f9-4a48-b706-8f102a97dc9e" />
+<img width="1920" height="1140" alt="Features2" src="https://github.com/user-attachments/assets/b342cc68-b63a-47b0-846c-93eaaf18c5fb" />
 
 ---
 
@@ -156,4 +157,4 @@ Open `http://127.0.0.1:5000` in your browser.
 **Pushkar Agrawal**
 B.Tech CSE — Jaypee Institute of Information Technology, Noida (2024–2028)
 
-[GitHub](https://github.com/PushkarAgrawal17) · [LinkedIn](https://linkedin.com/in/pushkaragrawal17) · [LeetCode](https://leetcode.com/u/pushkar17)
+[GitHub](https://github.com/PushkarAgrawal17) · [LinkedIn](https://linkedin.com/in/pushkaragrawal17)
