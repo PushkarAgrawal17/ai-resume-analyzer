@@ -1,0 +1,345 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(ellipse at 20% 20%, #0f1a3d 0%, #080d1f 50%, #0a0f2e 100%);
+    min-height: 100vh;
+    color: #e2e8f0;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 3.5rem 1rem 2rem;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    color: #a78bfa;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.2rem;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #e0e7ff 0%, #a78bfa 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+/* FORM */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Upload box */
+.upload-box {
+    position: relative;
+    background: rgba(99, 102, 241, 0.05);
+    border: 1.5px dashed rgba(99, 102, 241, 0.35);
+    border-radius: 12px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.upload-box:hover {
+    border-color: rgba(139, 92, 246, 0.6);
+}
+
+.upload-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.upload-label {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    pointer-events: none;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Textarea */
+textarea {
+    background: rgba(99, 102, 241, 0.05);
+    border: 1.5px solid rgba(99, 102, 241, 0.25);
+    border-radius: 12px;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.85rem 1rem;
+    resize: vertical;
+    height: 160px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+textarea:focus {
+    border-color: rgba(139, 92, 246, 0.6);
+}
+
+textarea::placeholder {
+    color: #475569;
+}
+
+/* Button */
+.analyze-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.85rem;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+    transition: all 0.2s;
+}
+
+.analyze-btn:hover {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.55);
+    transform: translateY(-1px);
+}
+
+/* Error */
+.error-banner {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    color: #f87171;
+    padding: 0.85rem 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* DIVIDER */
+.divider {
+    border: none;
+    border-top: 1px solid #1e293b;
+    margin: 2.5rem 0;
+}
+
+/* SCORE CARD */
+.score-card {
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    border: 1px solid #4338ca;
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+}
+
+.score-number {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #a78bfa;
+    line-height: 1;
+}
+
+.score-label {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* FEEDBACK */
+.feedback-banner {
+    background: rgba(30, 58, 138, 0.3);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 10px;
+    color: #93c5fd;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+/* SECTION HEADING */
+.section-heading {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 2rem 0 1rem;
+}
+
+/* SECTION GRID */
+.section-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-card {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+}
+
+.section-score {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.section-name {
+    font-size: 0.72rem;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+}
+
+/* SKILLS */
+.skills-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.skills-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 0.75rem;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.chip-matched {
+    background: #052e16;
+    color: #4ade80;
+    border: 1px solid #166534;
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.chip-missing {
+    background: #2d0a0a;
+    color: #f87171;
+    border: 1px solid #7f1d1d;
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.empty-msg {
+    color: #475569;
+    font-size: 0.88rem;
+}
+
+/* SUGGESTIONS */
+.suggestion-box {
+    background: rgba(28, 25, 23, 0.8);
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    color: #fcd34d;
+    font-size: 0.92rem;
+    margin-bottom: 0.75rem;
+}
+
+/* MATCH CARDS */
+.match-card {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.match-header {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.match-score {
+    color: #a78bfa;
+    font-weight: 700;
+}
+
+.match-resume {
+    color: #e2e8f0;
+    font-size: 0.88rem;
+    margin-bottom: 0.4rem;
+}
+
+.match-jd {
+    color: #94a3b8;
+    font-size: 0.85rem;
+}

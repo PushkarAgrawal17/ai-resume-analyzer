@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-badge">✦ Semantic AI Matching</div>
+        <h1 class="hero-title">AI Resume Analyzer</h1>
+        <p class="hero-subtitle">
+            Upload your resume and paste a job description — get an instant match score,
+            skill gap analysis, and actionable suggestions.
+        </p>
+    </div>
+
+    <!-- INPUT FORM -->
+    <div class="container">
+        <form action="/analyze" method="POST" enctype="multipart/form-data">
+            <div class="input-row">
+                <div class="input-group">
+                    <label class="input-label">📎 RESUME</label>
+                    <div class="upload-box">
+                        <input type="file" name="resume" id="resume" accept=".pdf" required>
+                        <label for="resume" class="upload-label">
+                            <span id="file-name">Click to upload PDF</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">📋 JOB DESCRIPTION</label>
+                    <textarea name="job_description" placeholder="Paste the job description here..." required>{{ request.form.get('job_description', '') }}</textarea>
+                </div>
+            </div>
+
+            {% if error %}
+            <div class="error-banner">⚠️ {{ error }}</div>
+            {% endif %}
+
+            <button type="submit" class="analyze-btn">⚡ Analyze Match</button>
+        </form>
+
+        <!-- RESULTS — only shown after form submit -->
+        {% if weighted_score is defined and weighted_score is not none %}
+
+        <div class="divider"></div>
+
+        <!-- SCORE CARD -->
+        <div class="score-card">
+            <div class="score-number">{{ weighted_score }}%</div>
+            <div class="score-label">OVERALL MATCH SCORE</div>
+        </div>
+
+        <!-- FEEDBACK -->
+        <div class="feedback-banner">{{ feedback }}</div>
+
+        <!-- SECTION SCORES -->
+        <div class="section-heading">📊 SCORE BY SECTION</div>
+        <div class="section-grid">
+            {% for section, sec_score in section_scores.items() %}
+            <div class="section-card">
+                <div class="section-score">{{ sec_score }}%</div>
+                <div class="section-name">{{ section.upper() }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- SKILL ANALYSIS -->
+        <div class="section-heading">🧠 SKILL ANALYSIS</div>
+        <div class="skills-row">
+            <div class="skills-col">
+                <div class="skills-title">✅ Matched Skills</div>
+                <div class="chips">
+                    {% for skill in matched_skills %}
+                    <span class="chip-matched">{{ skill }}</span>
+                    {% endfor %}
+                    {% if not matched_skills %}
+                    <p class="empty-msg">No matching skills found.</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="skills-col">
+                <div class="skills-title">❌ Missing Skills</div>
+                <div class="chips">
+                    {% for skill in missing_skills %}
+                    <span class="chip-missing">{{ skill }}</span>
+                    {% endfor %}
+                    {% if not missing_skills %}
+                    <p class="empty-msg">No missing skills — great match!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- SUGGESTIONS -->
+        {% if suggestions %}
+        <div class="section-heading">💡 SUGGESTIONS</div>
+        {% for suggestion in suggestions %}
+        <div class="suggestion-box">{{ suggestion | safe }}</div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- TOP MATCHES -->
+        <div class="section-heading">🔍 WHY THIS SCORE — TOP MATCHING LINES</div>
+        {% for r_sent, jd_sent, match_score in top_matches %}
+        <div class="match-card">
+            <div class="match-header">
+                MATCH {{ loop.index }} &nbsp;·&nbsp;
+                <span class="match-score">{{ match_score }}%</span>
+            </div>
+            <div class="match-resume">📄 <strong>Resume:</strong> {{ r_sent[:120] }}...</div>
+            <div class="match-jd">💼 <strong>JD:</strong> {{ jd_sent[:120] }}...</div>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+    </div>
+
+    <!-- File name display script -->
+    <script>
+        document.getElementById('resume').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'Click to upload PDF';
+            document.getElementById('file-name').textContent = fileName;
+        });
+    </script>
+
+</body>
+</html>
