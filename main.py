@@ -1,6 +1,7 @@
 from utils.extractor import extract_text_from_pdf
-from utils.embedder import get_embedding
+from utils.embedder import get_embedding, model
 from utils.scorer import compute_match_score, generate_feedback
+from utils.explainer import split_into_sentences, get_top_matches
 
 # This file is for quick CLI testing only.
 # The main app runs via: streamlit run app.py
@@ -28,3 +29,29 @@ if __name__ == "__main__":
     print(f"Match Score : {score}%")
     print(f"Feedback    : {feedback}")
     print("==============================")
+
+
+    text = extract_text_from_pdf("data/Pushkar Agrawal - Resume.pdf")
+    sentences = split_into_sentences(text)
+
+    print(f"Total sentences extracted: {len(sentences)}")
+    for i, s in enumerate(sentences):
+        print(f"{i+1}. {s}")
+
+
+resume_text = extract_text_from_pdf("data/Pushkar Agrawal - Resume.pdf")
+jd_text = """We are looking for a Junior Software Engineer with strong problem solving abilities and hands-on experience in Python and C++.
+Experience building full-stack applications using React, Node.js, and FastAPI.
+Familiarity with scikit-learn, tensorflow and machine learning is required.
+Knowledge of Git and MySQL is mandatory.
+Experience with Docker and AWS is a plus.
+Strong teamwork and communication skills are valued.
+"""
+
+matches = get_top_matches(resume_text, jd_text, model, top_n=5)
+
+print("\n===== TOP MATCHING PAIRS =====")
+for i, (r, j, score) in enumerate(matches):
+    print(f"\nMatch {i+1} — Score: {score}%")
+    print(f"  Resume : {r[:100]}")
+    print(f"  JD     : {j[:100]}")

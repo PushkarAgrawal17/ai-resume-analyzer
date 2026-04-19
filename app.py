@@ -1,8 +1,9 @@
 import streamlit as st
 from utils.skills import compare_skills
-from utils.embedder import get_embedding
+from utils.embedder import get_embedding, model
 from utils.extractor import extract_text_from_pdf, extract_sections
 from utils.scorer import compute_match_score, generate_feedback, compute_section_scores
+from utils.explainer import get_top_matches
 import tempfile
 import os
 
@@ -303,6 +304,7 @@ if analyze_btn:
             feedback = generate_feedback(score)
             matched_skills, missing_skills = compare_skills(resume_text, job_description)
             section_scores = compute_section_scores(sections, jd_embedding)
+            top_matches = get_top_matches(resume_text, job_description, model, top_n=5)
 
         os.unlink(tmp_path)
 
@@ -382,3 +384,27 @@ if analyze_btn:
                         {suggestion}
                     </div>
                     """, unsafe_allow_html=True)
+
+        st.markdown('<div class="section-heading">🔍 Why This Score — Top Matching Lines</div>', unsafe_allow_html=True)
+
+        for i, (r_sent, jd_sent, score) in enumerate(top_matches):
+            st.markdown(f"""
+            <div style="
+                background: rgba(15,23,42,0.8);
+                border: 1px solid rgba(99,102,241,0.2);
+                border-radius: 12px;
+                padding: 1rem 1.25rem;
+                margin-bottom: 0.75rem;
+            ">
+                <div style="color:#64748b; font-size:0.75rem; margin-bottom:0.5rem;">
+                    MATCH {i+1} &nbsp;·&nbsp;
+                    <span style="color:#a78bfa; font-weight:700;">{score}%</span>
+                </div>
+                <div style="color:#e2e8f0; font-size:0.88rem; margin-bottom:0.4rem;">
+                    📄 <strong>Resume:</strong> {r_sent[:120]}...
+                </div>
+                <div style="color:#94a3b8; font-size:0.85rem;">
+                    💼 <strong>JD:</strong> {jd_sent[:120]}...
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
