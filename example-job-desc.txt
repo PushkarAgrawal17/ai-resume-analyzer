@@ -1,0 +1,45 @@
+Junior AI/ML Engineer Intern
+
+We are looking for a passionate Junior AI/ML Engineer Intern with strong problem-solving skills and hands-on experience in machine learning, NLP, and full-stack development. The ideal candidate should be comfortable building intelligent applications, working with semantic search systems, and developing modern web-based interfaces.
+
+Responsibilities:
+- Develop and improve AI-powered applications using Python and modern ML frameworks
+- Build semantic matching and NLP-based systems for intelligent information retrieval
+- Work with embeddings, cosine similarity, and machine learning pipelines
+- Design and optimize backend APIs and real-time communication systems
+- Implement explainable AI features and data-driven feedback systems
+- Collaborate on full-stack applications using modern frontend and backend technologies
+- Analyze model performance and improve system accuracy and usability
+
+Required Skills:
+- Strong proficiency in Python and C++
+- Understanding of Machine Learning concepts such as classification, overfitting control, and model evaluation
+- Familiarity with NLP concepts including semantic similarity, embeddings, and text preprocessing
+- Experience with libraries/frameworks such as NumPy, Pandas, Scikit-learn, PyTorch, TensorFlow, Flask, or FastAPI
+- Knowledge of cosine similarity, vector-based matching, and AI application pipelines
+- Familiarity with Git and databases such as MySQL or MongoDB
+- Strong problem-solving and debugging skills
+
+Preferred Qualifications:
+- Experience building AI-powered web applications
+- Familiarity with Sentence Transformers or HuggingFace models
+- Experience with real-time systems using WebSockets or Socket.io
+- Understanding of explainable AI or recommendation systems
+- Exposure to frontend technologies like React, HTML, CSS, or JavaScript
+
+Nice to Have:
+- Experience with semantic search or retrieval systems
+- Knowledge of deployment tools or cloud platforms
+- Participation in hackathons or collaborative technical projects
+
+What You'll Work On:
+- AI resume analysis and intelligent matching systems
+- NLP-powered recommendation pipelines
+- Real-time AI-assisted platforms
+- User-facing applications with explainable AI insights
+
+Location:
+Remote / Hybrid
+
+Duration:
+3–6 Months Internship

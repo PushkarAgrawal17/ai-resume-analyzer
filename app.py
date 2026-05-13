@@ -57,7 +57,7 @@ def analyze():
             suggestions.append("🎓 <strong>Education Section:</strong> Highlight relevant courses that align with this role.")
 
     finally:
-        os.unlink(tmp_path)  # always clean up
+        os.unlink(tmp_path)
 
     return render_template("index.html",
         weighted_score=weighted_score,
@@ -72,4 +72,4 @@ def analyze():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
